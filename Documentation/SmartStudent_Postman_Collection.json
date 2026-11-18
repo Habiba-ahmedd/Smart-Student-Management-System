@@ -1,0 +1,1133 @@
+{
+  "info": {
+    "_postman_id": "ae2acb6f-f868-4e43-99c8-36f63ebdeddc",
+    "name": "Smart Student Management System API",
+    "description": "Postman collection generated from the supplied Swagger/OpenAPI specification. Requests are prepared for documentation and optional manual use; no requests have been executed. Set baseUrl and the relevant IDs/tokens in collection variables before use.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://localhost:7106",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "userId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "teacherId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "teacherId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "courseId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "studentId",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "courseId",
+      "value": "1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "GET /api/Auth/profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "profile"
+              ]
+            },
+            "description": "Retrieve the authenticated user's profile.\nRequired access: Authenticated."
+          },
+          "response": []
+        },
+        {
+          "name": "POST /api/Auth/register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "register"
+              ]
+            },
+            "description": "Register a student account and student profile.\nRequired access: Public.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Student Name\",\n  \"email\": \"student@example.com\",\n  \"password\": \"YourPassword123\",\n  \"studentNumber\": \"ST100\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "POST /api/Auth/login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Auth",
+                "login"
+              ]
+            },
+            "description": "Authenticate and obtain a JWT access token.\nRequired access: Public.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"student@example.com\",\n  \"password\": \"YourPassword123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "GET /api/Admin/users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "users"
+              ]
+            },
+            "description": "List all users and their assigned roles.\nRequired access: Admin."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /api/Admin/users/{userId}/role",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/users/{{userId}}/role",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "users",
+                "{{userId}}",
+                "role"
+              ]
+            },
+            "description": "Change a user's role, subject to the project's role-transition safeguards.\nRequired access: Admin.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"Teacher\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/Admin/statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Admin/statistics",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Admin",
+                "statistics"
+              ]
+            },
+            "description": "Retrieve system statistics.\nRequired access: Admin."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Student",
+      "item": [
+        {
+          "name": "GET /api/Student",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Student",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Student"
+              ]
+            },
+            "description": "List student profiles.\nRequired access: Admin."
+          },
+          "response": []
+        },
+        {
+          "name": "POST /api/Student",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Student",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Student"
+              ]
+            },
+            "description": "Create a student account and profile.\nRequired access: Admin.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Student Name\",\n  \"email\": \"newstudent@example.com\",\n  \"password\": \"YourPassword123\",\n  \"studentNumber\": \"ST101\",\n  \"schoolClassId\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/Student/{id}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Student/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Student",
+                "{{id}}"
+              ]
+            },
+            "description": "Retrieve a student profile by ID.\nRequired access: Admin."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /api/Student/{id}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Student/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Student",
+                "{{id}}"
+              ]
+            },
+            "description": "Update a student profile.\nRequired access: Admin.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Updated Student\",\n  \"studentNumber\": \"ST101\",\n  \"schoolClassId\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /api/Student/{id}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Student/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Student",
+                "{{id}}"
+              ]
+            },
+            "description": "Delete a student if no academic records remain.\nRequired access: Admin."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Teacher",
+      "item": [
+        {
+          "name": "GET /api/Teacher",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Teacher",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Teacher"
+              ]
+            },
+            "description": "List teachers.\nRequired access: Admin."
+          },
+          "response": []
+        },
+        {
+          "name": "POST /api/Teacher",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Teacher",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Teacher"
+              ]
+            },
+            "description": "Create a teacher account.\nRequired access: Admin.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Teacher Name\",\n  \"email\": \"teacher@example.com\",\n  \"password\": \"YourPassword123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /api/Teacher/{teacherId}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Teacher/{{teacherId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Teacher",
+                "{{teacherId}}"
+              ]
+            },
+            "description": "Delete a teacher if no dependent records remain.\nRequired access: Admin."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/Teacher/{teacherId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Teacher/{{teacherId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Teacher",
+                "{{teacherId}}"
+              ]
+            },
+            "description": "Retrieve a teacher by ID.\nRequired access: Admin."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Class",
+      "item": [
+        {
+          "name": "POST /api/Class",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Class",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Class"
+              ]
+            },
+            "description": "Create a class.\nRequired access: Admin.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Class A\",\n  \"description\": \"First class\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/Class",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Class",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Class"
+              ]
+            },
+            "description": "List classes.\nRequired access: Admin."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/Class/{id}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Class/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Class",
+                "{{id}}"
+              ]
+            },
+            "description": "Retrieve a class by ID.\nRequired access: Admin."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /api/Class/{id}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Class/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Class",
+                "{{id}}"
+              ]
+            },
+            "description": "Update a class.\nRequired access: Admin.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Class A - Updated\",\n  \"description\": \"Updated description\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /api/Class/{id}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Class/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Class",
+                "{{id}}"
+              ]
+            },
+            "description": "Delete a class if no students are assigned.\nRequired access: Admin."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/Class/{id}/students",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Class/{{id}}/students",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Class",
+                "{{id}}",
+                "students"
+              ]
+            },
+            "description": "List students assigned to a class.\nRequired access: Admin."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Course",
+      "item": [
+        {
+          "name": "GET /api/Course",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Course",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Course"
+              ]
+            },
+            "description": "List courses.\nRequired access: Admin."
+          },
+          "response": []
+        },
+        {
+          "name": "POST /api/Course",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Course",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Course"
+              ]
+            },
+            "description": "Create a course and assign a teacher.\nRequired access: Admin.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"courseName\": \"Introduction to Programming\",\n  \"courseCode\": \"CS101\",\n  \"description\": \"Programming fundamentals\",\n  \"teacherId\": \"{{teacherId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/Course/{id}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Course/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Course",
+                "{{id}}"
+              ]
+            },
+            "description": "Retrieve a course by ID.\nRequired access: Admin."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /api/Course/{id}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Course/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Course",
+                "{{id}}"
+              ]
+            },
+            "description": "Update a course.\nRequired access: Admin.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"courseName\": \"Introduction to Programming\",\n  \"courseCode\": \"CS101\",\n  \"description\": \"Updated description\",\n  \"teacherId\": \"{{teacherId}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /api/Course/{id}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Course/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Course",
+                "{{id}}"
+              ]
+            },
+            "description": "Delete a course if it has no dependent academic records.\nRequired access: Admin."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Enrollment",
+      "item": [
+        {
+          "name": "POST /api/Enrollment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Enrollment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Enrollment"
+              ]
+            },
+            "description": "Enroll a student in a course.\nRequired access: Admin.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studentId\": 1,\n  \"courseId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE /api/Enrollment",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Enrollment",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Enrollment"
+              ]
+            },
+            "description": "Remove a student-course enrollment.\nRequired access: Admin.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studentId\": 1,\n  \"courseId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/Enrollment/course/{courseId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Enrollment/course/{{courseId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Enrollment",
+                "course",
+                "{{courseId}}"
+              ]
+            },
+            "description": "List students enrolled in a course.\nRequired access: Admin."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/Enrollment/student/{studentId}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Enrollment/student/{{studentId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Enrollment",
+                "student",
+                "{{studentId}}"
+              ]
+            },
+            "description": "List courses for a student.\nRequired access: Admin."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Grade",
+      "item": [
+        {
+          "name": "POST /api/Grade",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Grade",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Grade"
+              ]
+            },
+            "description": "Create a grade for a student enrolled in a course owned by the teacher.\nRequired access: Teacher.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studentId\": 1,\n  \"courseId\": 1,\n  \"score\": 85,\n  \"maxScore\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/Grade",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Grade",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Grade"
+              ]
+            },
+            "description": "List all grades.\nRequired access: Admin."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/Grade/my-courses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Grade/my-courses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Grade",
+                "my-courses"
+              ]
+            },
+            "description": "Retrieve courses assigned to the authenticated teacher.\nRequired access: Teacher."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/Grade/my-grades",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Grade/my-grades",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Grade",
+                "my-grades"
+              ]
+            },
+            "description": "Retrieve grades belonging to the authenticated student.\nRequired access: Student."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /api/Grade/{id}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Grade/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Grade",
+                "{{id}}"
+              ]
+            },
+            "description": "Update a grade for a course owned by the authenticated teacher.\nRequired access: Teacher.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"score\": 90,\n  \"maxScore\": 100\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Attendance",
+      "item": [
+        {
+          "name": "POST /api/Attendance",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Attendance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Attendance"
+              ]
+            },
+            "description": "Create an attendance record for a student enrolled in a course owned by the teacher.\nRequired access: Teacher.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"studentId\": 1,\n  \"courseId\": 1,\n  \"attendanceDate\": \"2026-11-18T09:00:00\",\n  \"status\": 0\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/Attendance",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Attendance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Attendance"
+              ]
+            },
+            "description": "Retrieve all attendance records.\nRequired access: Admin."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/Attendance/my-courses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Attendance/my-courses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Attendance",
+                "my-courses"
+              ]
+            },
+            "description": "Retrieve courses assigned to the authenticated teacher.\nRequired access: Teacher."
+          },
+          "response": []
+        },
+        {
+          "name": "GET /api/Attendance/my-attendance",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/Attendance/my-attendance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Attendance",
+                "my-attendance"
+              ]
+            },
+            "description": "Retrieve the authenticated student's attendance history.\nRequired access: Student."
+          },
+          "response": []
+        },
+        {
+          "name": "PUT /api/Attendance/{id}",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/Attendance/{{id}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "Attendance",
+                "{{id}}"
+              ]
+            },
+            "description": "Update an attendance record for a course owned by the authenticated teacher.\nRequired access: Teacher.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"attendanceDate\": \"2026-11-18T09:00:00\",\n  \"status\": 2\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
